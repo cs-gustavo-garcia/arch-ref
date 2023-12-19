@@ -602,12 +602,12 @@
     ```swift
     // Not Preferred
 
-    service?.disputes(router: DisputeRouter.currencies, completion: { result in
+    service?.disputes(router: DisputeRouter.currencies, completion: { [weak self] result in
         switch result {
         case .success:
-            self.endState(errorModel: nil)
+            self?.endState(errorModel: nil)
         case let .failure(error):
-            self.endState(errorModel: PlaceholderViewModel(error: error))
+            self?.endState(errorModel: PlaceholderViewModel(error: error))
         }
     })
     ```   
@@ -615,12 +615,12 @@
     ```swift
     // Preferred
 
-    service?.disputes(router: DisputeRouter.currencies) { result in
+    service?.disputes(router: DisputeRouter.currencies) { [weak self] result in
         switch result {
         case .success:
-            self.endState(errorModel: nil)
+            self?.endState(errorModel: nil)
         case let .failure(error):
-            self.endState(errorModel: PlaceholderViewModel(error: error))
+            self?.endState(errorModel: PlaceholderViewModel(error: error))
         }
     }
     ```   
