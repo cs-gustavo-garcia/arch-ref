@@ -659,7 +659,7 @@
            system.velocity = .fast
            return system
         }()
-		let color: Color     
+	let color: Color     
 
         init(color: Color) {
 	        self.color = color
@@ -802,7 +802,7 @@
     ```swift
     // Not Preferred
 
-    if let _ = imperialDalek {
+    if let imperialDalek = imperialDalek {
         exterminate()
     }
     ```  
@@ -810,7 +810,7 @@
     ```swift
     // Preferred
 
-    if imperialDalek {
+    if let imperialDalek {
         exterminate()
     }
     ```  
@@ -822,36 +822,36 @@
     // Not Preferred
 
     protocol ViewDelegate {
-      func didChangeValue()
+    	func didChangeValue()
     }
 	
-  	final class View: UIView {
-  		
-  		var delegate: ViewDelegate!
+    final class View: UIView {
+
+    var delegate: ViewDelegate!
   	
-  		func valueChanged() {
-  			delegate.didChangeValue()
-  		}
-  		
-  	}
+    func valueChanged() {
+    	delegate.didChangeValue()
+    }
+    		
+  }
     ```  
 
     ```swift
     // Preferred
 
     protocol ViewDelegate: AnyObject {
-	    func didChangeValue()
+	func didChangeValue()
     }
-	
-	  final class View: UIView {
+
+    final class View: UIView {
 		
-      weak var delegate: ViewDelegate?
+    	weak var delegate: ViewDelegate?
 	
-  		func valueChanged() {
-  			delegate?.didChangeValue()
-  		}
-		
-	  }
+    	func valueChanged() {
+  		delegate?.didChangeValue()
+  	}
+
+  }
     ```
 **Obs:** Deve ser utilizado `AnyObject` no protocolo ao invés de `class`, pois `class` está/será depreciado.
 
@@ -862,17 +862,17 @@
     ```swift
     // Not Preferred
 
-	final class ViewModel {
+    final class ViewModel {
 		
-		var items: [String] = []
+	var items: [String] = []
 	
-		func fetchItems() {
-			network.fetch() { result
-				self.items = result.items
-			}
+	func fetchItems() {
+		network.fetch() { result
+			self.items = result.items
 		}
-		
 	}
+		
+   }
     ```  
 
     ```swift
@@ -880,18 +880,18 @@
 
     final class ViewModel {
 		
-		var items: [String] = []
+	var items: [String] = []
 	
-		func fetchItems() {
-			network.fetch() { [weak self] result
-				guard let self else {
-					return
-				}
-				self.items = result.items
+	func fetchItems() {
+		network.fetch() { [weak self] result
+			guard let self else {
+				return
 			}
+			self.items = result.items
 		}
-		
 	}
+		
+    }
     ```
 
 - Deve-se sempre utilizar `final` nas classes que não são/serão herdadas.
