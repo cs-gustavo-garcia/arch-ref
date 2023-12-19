@@ -238,7 +238,3 @@ final class LoginContainerViewSnapshotTestCase: FBSnapshotTestCase {
 
 ### Device de snapshot
 Snapshots devem ser feitos com **iPhone 11 Pro**
-
----
-
-*Autor - Matheus de Vasconcelos*
