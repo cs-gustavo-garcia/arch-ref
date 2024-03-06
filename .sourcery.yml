@@ -1,0 +1,10 @@
+sources:
+    - Targets/MyApp/Sources
+templates:
+    - Templates
+output: 
+    path: Wellness/Sources/Generated
+args:
+    apiDev: ${MODULE_API_KEY_DEV}
+    apiHml: ${MODULE_API_KEY_HML}
+    apiPrd: ${MODULE_API_KEY_PRD}
