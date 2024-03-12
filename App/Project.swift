@@ -19,7 +19,6 @@ let project = Project(
             sources: "Sources/App/**",
             dependencies: [
                 .package(product: "Alamofire"),
-                .project(target: "FeatureOneFramework_iOS", path: .relativeToRoot("Features/FeatureOne")),
                 .package(product: "LocalSwiftPackage")
             ],
             settings: .targetSettings

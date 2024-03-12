@@ -7,13 +7,8 @@ COCOAPODS=$(BUNDLE) exec pod
 setup: ## setup project with Tuist and Cocoapods
 	make install_tuist
 	tuist generate
-# $(COCOAPODS) install
 
 install: ## install required dependencies
-# make install_bundle
-# $(COCOAPODS) install --repo-update
-
-install_bundle: ## install gems
 	$(BUNDLE) install
 
 download_tuist:
