@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "LocalSwiftPackage",
     defaultLocalization: "en",
-    platforms: [.iOS(.v13)],
+    platforms: [.iOS(.v15)],
     dependencies: [
     ],
     targets: [

@@ -2,7 +2,7 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let project = Project(
-    name: "App",
+    name: "ArchrefApp",
     packages: [
         .remote(url: "https://github.com/Alamofire/Alamofire",
                 requirement: .upToNextMajor(from: "5.0.0")),
@@ -11,10 +11,11 @@ let project = Project(
     settings: .projectSettings,
     targets: [
         Target(
-            name: "App",
+            name: "ArchrefApp",
             destinations: .iOS,
             product: .app,
             bundleId: "archref.app",
+            deploymentTargets: .iOS("15.0"),
             infoPlist: .default,
             sources: "Sources/App/**",
             dependencies: [
@@ -23,10 +24,12 @@ let project = Project(
             ],
             settings: .targetSettings
         ),
-        Target(name: "AppTests",
+        Target(name: "ArchrefAppTests",
                destinations: .iOS,
                product: .unitTests,
-               bundleId: "archref.unittests")
+               bundleId: "archref.unittests",
+               deploymentTargets: .iOS("15.0"),
+               sources: "Sources/Tests/**")
     ],
-    schemes: Scheme.allSchemes(for: ["App"], executable: "App")
+    schemes: Scheme.allSchemes(for: ["ArchrefApp"], executable: "ArchrefApp")
 )
