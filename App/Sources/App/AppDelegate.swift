@@ -9,11 +9,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard window != nil else {
             return false
         }
-
-        let vc = UIViewController()
-        window?.rootViewController = vc
-        vc.view.backgroundColor = .systemGreen
-
+        
+        window?.rootViewController = ViewController()
         window?.makeKeyAndVisible()
 
         return true

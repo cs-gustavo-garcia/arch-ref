@@ -6,7 +6,7 @@ let project = Project(
     packages: [
         .remote(url: "https://github.com/Alamofire/Alamofire",
                 requirement: .upToNextMajor(from: "5.0.0")),
-        .local(path: .relativeToManifest("../LocalSwiftPackage"))
+        .local(path: .relativeToManifest("../LocalSwiftPackage/"))
     ],
     settings: .projectSettings,
     targets: [
@@ -24,12 +24,16 @@ let project = Project(
             ],
             settings: .targetSettings
         ),
-        Target(name: "ArchrefAppTests",
-               destinations: .iOS,
-               product: .unitTests,
-               bundleId: "archref.unittests",
-               deploymentTargets: .iOS("15.0"),
-               sources: "Sources/Tests/**")
+        Target(
+            name: "ArchrefAppTests",
+            destinations: .iOS,
+            product: .unitTests,
+            bundleId: "archref.unittests",
+            deploymentTargets: .iOS("15.0"),
+            sources: "Sources/Tests/**",
+            dependencies: [
+                .target(name: "ArchrefApp")
+            ]),
     ],
     schemes: Scheme.allSchemes(for: ["ArchrefApp"], executable: "ArchrefApp")
 )
