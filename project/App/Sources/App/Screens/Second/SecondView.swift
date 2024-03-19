@@ -1,5 +1,5 @@
 //
-//  FirstView.swift
+//  SecondView.swift
 //  ArchrefApp
 //
 //  Created by gustavo.garcia.leite on 13/03/24.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol FirstViewDelegate: AnyObject {
+protocol SecondViewDelegate: AnyObject {
     func didTapChangeScreenButton()
 }
 
-final class FirstView: UIView {
+final class SecondView: UIView {
     
     lazy var button: UIButton = {
         let button: UIButton = .init(type: .system)
@@ -20,7 +20,7 @@ final class FirstView: UIView {
         return button
     }()
     
-    weak var delegate: FirstViewDelegate?
+    weak var delegate: SecondViewDelegate?
     
     override init(frame: CGRect = .zero) {
         super.init(frame: frame)
@@ -37,13 +37,11 @@ final class FirstView: UIView {
     }
     
     @objc
-    func changeScreen() {
-        delegate?.didTapChangeScreenButton()
-    }
+    func changeScreen() {}
     
 }
 
-extension FirstView: ViewConfiguration {
+extension SecondView: ViewConfiguration {
     
     func buildViewHierarchy() {
         [button].forEach(addSubview(_:))
@@ -59,7 +57,7 @@ extension FirstView: ViewConfiguration {
     }
     
     func addAdditionalConfiguration() {
-        backgroundColor = .green
+        backgroundColor = .brown
     }
     
 }

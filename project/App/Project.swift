@@ -35,5 +35,24 @@ let project = Project(
                 .target(name: "ArchrefApp")
             ]),
     ],
-    schemes: Scheme.allSchemes(for: ["ArchrefApp"], executable: "ArchrefApp")
+    schemes: [        
+        Scheme(
+            name: "ArchrefApp-Debug",
+            shared: true,
+            buildAction: .buildAction(targets: ["ArchrefApp"]),
+            testAction: .targets(["ArchrefAppTests"]),
+            runAction: .runAction(executable: "ArchrefApp")
+        ),
+        Scheme(
+            name: "ArchrefApp-Beta",
+            shared: true,
+            buildAction: .buildAction(targets: ["ArchrefApp"]),
+            runAction: .runAction(executable: "ArchrefApp")
+        ),
+        Scheme(
+            name: "ArchrefApp-Release",
+            shared: true,
+            buildAction: .buildAction(targets: ["ArchrefApp"]),
+            runAction: .runAction(executable: "ArchrefApp")
+        )]
 )

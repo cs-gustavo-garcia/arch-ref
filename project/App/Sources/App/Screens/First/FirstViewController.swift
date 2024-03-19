@@ -7,19 +7,19 @@
 
 import UIKit
 
-protocol Coordinator {
-    var childCoordinators: [Coordinator] { get set }
-    var navigationController: UINavigationController { get set }
-
-    func start()
+protocol FirstViewControllerFlowDelegate: AnyObject {
+    func navigateTo(flow: FirstCoordinatorFlow)
 }
 
 final class FirstViewController: UIViewController {
     
     let mainView: FirstView = .init()
     let viewModel: FirstViewModelProtocol
+    weak var coordinatorDelegate: FirstViewControllerFlowDelegate?
     
-    init(viewModel: FirstViewModelProtocol = FirstViewModel()) {
+    init(coordinatorDelegate: FirstViewControllerFlowDelegate,
+         viewModel: FirstViewModelProtocol = FirstViewModel()) {
+        self.coordinatorDelegate = coordinatorDelegate
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         self.viewModel.delegate = self
