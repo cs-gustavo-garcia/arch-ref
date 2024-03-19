@@ -10,7 +10,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return false
         }
         
-        window?.rootViewController = ViewController()
+        window?.rootViewController = FirstViewController()
         window?.makeKeyAndVisible()
 
         return true

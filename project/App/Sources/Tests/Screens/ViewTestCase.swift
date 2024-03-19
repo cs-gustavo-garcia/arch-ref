@@ -5,7 +5,7 @@
 //  Created by gustavo.garcia.leite on 13/03/24.
 //
 
-@testable import ArchrefApp
+@testable import LocalSwiftPackage
 import XCTest
 
 final class ViewTestCase: XCTestCase {
