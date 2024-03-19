@@ -7,11 +7,30 @@
 
 import UIKit
 
-public final class FirstView: UIView {
+protocol FirstViewDelegate: AnyObject {
+    func didTapActionButton()
+}
+
+final class FirstView: UIView {
     
-    public override init(frame: CGRect = .zero) {
-        super.init(frame: frame)
-        backgroundColor = .green
+    lazy var button: UIButton = {
+        var button: UIButton = .init()
+        button.backgroundColor = .black
+        button.addTarget(self, action: #selector(changeScreen), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    weak var delegate: FirstViewDelegate?
+    var content: FirstViewContent? {
+        didSet {
+            updateView()
+        }
+    }
+    
+    init() {
+        super.init(frame: .zero)
+        setupView()
     }
     
     @available(*, unavailable)
@@ -19,8 +38,33 @@ public final class FirstView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateView() {
-        backgroundColor = .blue
+    private func updateView() {
+        guard let content else {
+            return
+        }
+        button.setTitle(content.buttonTitle, for: .normal)
     }
     
+    @objc
+    func changeScreen() {
+        delegate?.didTapActionButton()
+    }
+    
+}
+
+extension FirstView: ViewConfiguration {
+    func buildViewHierarchy() {
+        addSubview(button)
+    }
+    
+    func setConstraints() {
+        button.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        button.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        button.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        button.heightAnchor.constraint(equalToConstant: 100).isActive = true
+    }
+    
+    func addAdditionalConfiguration() {
+        backgroundColor = .white
+    }
 }

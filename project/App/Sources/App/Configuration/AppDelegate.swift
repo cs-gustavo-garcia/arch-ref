@@ -10,7 +10,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return false
         }
         
-        window?.rootViewController = FirstViewController()
+        let navigationViewController: UINavigationController = .init(rootViewController: FirstViewController())
+        window?.rootViewController = navigationViewController
         window?.makeKeyAndVisible()
 
         return true

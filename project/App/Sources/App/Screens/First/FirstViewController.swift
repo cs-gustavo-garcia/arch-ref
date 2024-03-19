@@ -7,13 +7,6 @@
 
 import UIKit
 
-protocol Coordinator {
-    var childCoordinators: [Coordinator] { get set }
-    var navigationController: UINavigationController { get set }
-
-    func start()
-}
-
 final class FirstViewController: UIViewController {
     
     let mainView: FirstView = .init()
@@ -31,7 +24,8 @@ final class FirstViewController: UIViewController {
     }
     
     override func loadView() {
-        view = FirstView()
+        mainView.delegate = self
+        view = mainView
     }
     
     override func viewDidLoad() {
@@ -44,7 +38,16 @@ final class FirstViewController: UIViewController {
 extension FirstViewController: FirstViewModelDelegate {
     
     func updateView() {
-        mainView.updateView()
+        mainView.content = viewModel.content
+    }
+    
+}
+
+extension FirstViewController: FirstViewDelegate {
+    
+    func didTapActionButton() {
+        let viewController: SecondViewController = .init()
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
 }
