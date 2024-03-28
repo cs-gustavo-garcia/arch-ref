@@ -3,6 +3,7 @@ import ProjectDescriptionHelpers
 
 let project = Project(
     name: "ArchrefApp",
+    organizationName: "ArchrefAppOrg",
     packages: [
         .remote(url: "https://github.com/Alamofire/Alamofire",
                 requirement: .upToNextMajor(from: "5.0.0")),

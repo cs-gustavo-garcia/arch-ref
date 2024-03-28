@@ -30,7 +30,8 @@ extension Scheme {
             buildAction: .buildAction(targets: ["\(target)"]),
             testAction: .targets(
                 ["\(target)Tests"],
-                configuration: config
+                configuration: config,
+                options: .options(coverage: true, codeCoverageTargets: executableTarget != nil ? [executableTarget!] : [])
             ),
             runAction: .runAction(
                 configuration: config,

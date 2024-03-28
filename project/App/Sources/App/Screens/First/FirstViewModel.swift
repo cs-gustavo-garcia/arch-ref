@@ -24,15 +24,20 @@ protocol FirstViewModelDelegate: AnyObject {
 final class FirstViewModel: FirstViewModelProtocol {
     
     weak var delegate: FirstViewModelDelegate?
-    let content: FirstViewContent?
+    var content: FirstViewContent?
+    private let dispatchQueueAsync: DispatchQueueAsync
     
-    init() {
-        content = .init(buttonTitle: "tap")
+    init(dispatchQueueAsync: DispatchQueueAsync = DispatchQueue.main) {
+        self.dispatchQueueAsync = dispatchQueueAsync
     }
     
     func viewDidLoad() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-            self?.delegate?.updateView()
+        dispatchQueueAsync.asyncAfter(deadline: .now() + 2) { [weak self] in
+            guard let self = self else {
+                return
+            }
+            self.content = .init(buttonTitle: "tap")
+            self.delegate?.updateView()
         }
     }
 }

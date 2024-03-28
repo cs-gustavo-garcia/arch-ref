@@ -7,16 +7,28 @@
 
 import UIKit
 
-public final class SecondView: UIView {
+final class SecondView: UIView {
     
-    public override init(frame: CGRect = .zero) {
+    override init(frame: CGRect = .zero) {
         super.init(frame: frame)
-        backgroundColor = .brown
+        setupView()
     }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+extension SecondView: ViewConfiguration {
+    
+    func buildViewHierarchy() {}
+    
+    func setConstraints() {}
+    
+    func addAdditionalConfiguration() {
+        backgroundColor = .brown
     }
     
 }
